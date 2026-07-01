@@ -1,8 +1,10 @@
 # min-clip
 
 Ứng dụng Windows desktop bọc [MoneyPrinterTurbo](https://github.com/harry0703/MoneyPrinterTurbo)
-(FastAPI) — tạo video ngắn bằng AI với giao diện native, chạy API Python **ngầm**.
 
+### Sử dụng ngay: Windows tải .exe ở https://github.com/xuanco941/min-clip-runtime/releases/tag/v1.0.7 cài đặt và dử dụng
+
+### Dev =>
 ### Clone https://github.com/harry0703/MoneyPrinterTurbo đổi tên thành /api cùng folder /app sau đó chạy update.bat
 
 ## Điểm khác biệt kiến trúc
