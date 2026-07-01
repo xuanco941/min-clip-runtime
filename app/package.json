@@ -1,0 +1,100 @@
+{
+  "name": "min-clip",
+  "version": "1.0.7",
+  "description": "Create better clips with AI",
+  "private": true,
+  "main": "dist/main/main/index.js",
+  "author": "min-clip",
+  "license": "MIT",
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "prestart": "node scripts/ensure-build.mjs",
+    "start": "node scripts/run-electron.cjs .",
+    "build:main": "tsc -p tsconfig.node.json",
+    "build:preload": "tsc -p tsconfig.preload.json",
+    "build:renderer": "vite build",
+    "build": "npm run build:main && npm run build:preload && npm run build:renderer",
+    "typecheck": "tsc -p tsconfig.node.json --noEmit && tsc -p tsconfig.preload.json --noEmit && tsc -p tsconfig.web.json --noEmit",
+    "pack": "npm run build && electron-builder --dir",
+    "dist": "npm run build && electron-builder"
+  },
+  "dependencies": {
+    "electron-updater": "^6.3.9",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.26.2",
+    "@tanstack/react-query": "^5.59.0",
+    "zustand": "^4.5.5",
+    "react-hook-form": "^7.53.0",
+    "zod": "^3.23.8",
+    "@hookform/resolvers": "^3.9.0",
+    "clsx": "^2.1.1",
+    "tailwind-merge": "^2.5.2",
+    "lucide-react": "^0.441.0",
+    "i18next": "^23.15.1",
+    "react-i18next": "^15.0.2",
+    "framer-motion": "^11.5.4"
+  },
+  "devDependencies": {
+    "electron": "^32.1.2",
+    "electron-builder": "^25.0.5",
+    "vite": "^5.4.6",
+    "@vitejs/plugin-react": "^4.3.1",
+    "typescript": "^5.5.4",
+    "@types/react": "^18.3.5",
+    "@types/react-dom": "^18.3.0",
+    "@types/node": "^22.5.5",
+    "tailwindcss": "^3.4.10",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.45",
+    "concurrently": "^9.0.1",
+    "wait-on": "^8.0.1",
+    "cross-env": "^7.0.3"
+  },
+  "build": {
+    "appId": "com.minclip.app",
+    "productName": "min-clip",
+    "directories": {
+      "output": "release"
+    },
+    "artifactName": "min-clip-Setup-${version}.${ext}",
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "xuanco941",
+        "repo": "min-clip-runtime",
+        "releaseType": "release"
+      }
+    ],
+    "files": [
+      "dist/**/*",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "assets",
+        "to": "assets",
+        "filter": [
+          "**/*"
+        ]
+      }
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "assets/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "perMachine": false,
+      "include": "installer.nsh"
+    }
+  }
+}
